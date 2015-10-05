@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="player">
+        <div id="logo">
+            <img src="img/logo.png" alt="Лого">
+        </div>
+        <div class="left">
+            <div id="control">
+                <div class="but-control"><div id="prev"></div></div>
+                <div class="but-control"><div id="play"></div></div>
+                <div class="but-control"><div id="stop"></div></div>
+                <div class="but-control"><div id="next"></div></div>
+            </div>
+            <div id="volume">
+                <div class="speaker"></div>
+                <input type="range" min="0" max="100" value="0" id="volumeRange"/>
+            </div>
+        </div>
+        <div class="right">
+            <div id="track">
+                <ul class="track-info">
+                    <li><span id="artist">Микола Басков</span></li>
+                    <li><span id="albom">&lt;Красавчик&gt;</span></li>
+                    <li><span id="track-nam">1. Натуральний блондин</span></li>
+                </ul>
+                <img src="img/music-leak.jpg" alt="" id="albom-logo">
+            </div>
+        </div>
+        <div class="clear"></div>
+        <input type="range" min="0" max="200" value="0" id="track-scroll"/>
+
+    </div>
+    <div id="search-box">
+        <span>Знайти трек:</span>
+        <input type="search" placeholder="Ім'я треку">
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

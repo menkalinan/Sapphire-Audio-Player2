@@ -9,6 +9,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -33,10 +34,23 @@ class Browser extends Region {
     final WebEngine webEngine = browser.getEngine();
 
     public Browser() {
+        String state = "paused";
         getStyleClass().add("browser");
-        webEngine.load("http://www.game5.com.de/cuberunner/index.html");
+        String path = getClass().getResource("/com/sdx2/SapphireAudioPlayer/view/index.html").toExternalForm();
+        webEngine.load(path);
         getChildren().add(browser);
 
+        webEngine.setOnAlert((WebEvent<String> wEvent) -> {
+            System.out.println("Alert Event  -  Message:  " + wEvent.getData());
+
+            if(wEvent.getData().trim().equals("prev")){
+                /***TO DO***/
+            }
+            if(wEvent.getData().trim().equals("next")){
+                /***TO DO***/
+            }
+
+        });;
     }
     private Node createSpacer() {
         Region spacer = new Region();
@@ -57,4 +71,6 @@ class Browser extends Region {
     @Override protected double computePrefHeight(double width) {
         return 500;
     }
+
+
 }
