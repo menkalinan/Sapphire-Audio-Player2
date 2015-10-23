@@ -124,7 +124,7 @@ public class MP3FileReader {
             track.setTotalSamples(header.getNoOfSamples());
             track.setTrackLength(header.getTrackLength());
             track.setSampleRate(header.getSampleRateAsNumber());
-            track.setStartPosition(header.getAudioDataStartPosition());
+            track.setStartPosition(header.getMp3StartByte());
             track.setCodec(header.getFormat());
             track.setBitrate((int) header.getBitRateAsNumber());
         }
@@ -133,6 +133,11 @@ public class MP3FileReader {
     public static void main(String[] args) {
         MP3FileReader mp3FileReader = new MP3FileReader();
         Track track = mp3FileReader.read(new File("test.mp3"));
+        MP3Decoder mp3Decoder = new MP3Decoder();
+        mp3Decoder.open(track);
+        byte [] buf = new byte[65536];
+        mp3Decoder.seekSample(100000);
+        mp3Decoder.decode(buf);
     }
 
 }
