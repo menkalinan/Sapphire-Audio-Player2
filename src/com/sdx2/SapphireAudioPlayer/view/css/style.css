@@ -1,4 +1,42 @@
+@font-face {
+    font-family: iris;
+    src: url(../fonts/iris.ttf);
+}
+.clear{
+    width: 100%;
+    display: -webkit-box;
+}
 
+span{
+    font-family: iris;
+    font-size: 26px;
+}
+#player{
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    padding: 10px;
+    min-height: 150px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+/************** LOGO **************/
+#logo{
+    float: left;
+}
+.left{
+    float: left;
+}
+.right {
+    float: right;
+    width: 320px;
+}
+/************** CONTROL BUTTONS **************/
+#control{
+    display: inline-block;
+    width: 340px;
+    margin-top: 5px;
+
+}
 .but-control{
     display: inline-block;
     width: 50px;
@@ -9,6 +47,15 @@
 }
 .but-control:first-child{
     margin-left: 0;
+}
+#play {
+    width: 0;
+    height: 0;
+    margin: 12px 0 0 15px;
+    border-top: 13px solid transparent;
+    border-left: 28px solid #000259;
+    border-bottom: 13px solid transparent;
+
 }
 
 #prev{
@@ -40,6 +87,14 @@
     border-right: 16px solid #000259;
 }
 
+#stop{
+    width: 25px;
+    height: 25px;
+    background: #000259;
+    top: 12px;
+    left: 13px;
+    position: relative;
+}
 #next{
     width:28px;
     height:28px;
@@ -71,4 +126,104 @@
 
 #but-control:hover{
     cursor: pointer;
+}
+
+/************** TRACK SCROLLER **************/
+#volume{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 25px;
+}
+.speaker{
+    width: 15px;
+    height: 15px;
+    background: #00022b;
+    position:relative;
+    font-size:20px;
+}
+
+.speaker:before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-style: double;
+    border-color: #00022b;
+    border-width: 10px 10px 0 0;
+    -webkit-border-radius: 0 30px 0 0;
+    border-radius: 0 30px 0 0;
+    -webkit-transform: rotate(45deg);
+    left: 1.188em;
+    top: -0.1em;
+
+}
+
+.speaker:after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent #00022b transparent transparent;
+    border-width: 15px 20px 15px 18px;
+    left: -0.813em;
+    margin-top: -0.45em;
+
+
+}
+
+#volumeRange{
+    display: inline-block;
+    width: 100px;
+    margin: -40px 0 0 70px;
+    height: 65px;
+    background: transparent;
+}
+#track-scroll{
+    width: 735px;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input#track-scroll::-webkit-slider-runnable-track {
+    width: 400px;
+    height: 5px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #000259;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+/*************** TRACK INFO *************************/
+img#albom-logo {
+    float: right;
+}
+
+.track-info {
+    float: left;
+    list-style: none;
 }
