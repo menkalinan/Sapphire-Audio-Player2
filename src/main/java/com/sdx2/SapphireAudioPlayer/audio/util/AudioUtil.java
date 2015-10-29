@@ -1,4 +1,4 @@
-package com.sdx2.SapphireAudioPlayer.audio.util;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.util;
 
 import javax.sound.sampled.AudioFormat;
 

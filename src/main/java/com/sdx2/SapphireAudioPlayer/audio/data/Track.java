@@ -1,6 +1,6 @@
-package com.sdx2.SapphireAudioPlayer.audio.data;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.data;
 
-import com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
+import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 import org.jaudiotagger.tag.FieldKey;
 
 import java.io.File;

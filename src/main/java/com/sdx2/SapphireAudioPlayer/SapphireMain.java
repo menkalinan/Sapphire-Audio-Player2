@@ -1,4 +1,4 @@
-package com.sdx2.SapphireAudioPlayer;
+package main.java.com.sdx2.SapphireAudioPlayer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,15 +15,43 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class SapphireMain extends Application {
     private Scene scene;
     @Override public void start(Stage stage) {
-        stage.setTitle("Web View");
+                String version = "Web View ";
+//        try {
+//            version += readFile("src/main/java/version.properties");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        stage.setTitle(version);
         scene = new Scene(new Browser(),750,500, Color.web("#666970"));
         stage.setScene(scene);
         scene.getStylesheets().add("webviewsample/BrowserToolbar.css");
         stage.show();
+    }
+
+    String readFile(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        try {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                sb.append("\n");
+                line = br.readLine();
+            }
+            return sb.toString();
+        } finally {
+            br.close();
+        }
     }
 
     public static void main(String[] args){
@@ -38,7 +66,7 @@ class Browser extends Region {
     public Browser() {
         boolean state = false;
         getStyleClass().add("browser");
-        String path = getClass().getResource("/com/sdx2/SapphireAudioPlayer/view/index.html").toExternalForm();
+        String path = getClass().getResource("/main/resources/com/sdx2/SapphireAudioPlayer/view/index.html").toExternalForm();
         webEngine.load(path);
         getChildren().add(browser);
 
@@ -51,7 +79,7 @@ class Browser extends Region {
                         @Override
                         public void handleEvent(org.w3c.dom.events.Event evt) {
                             System.out.println("stop");
-                            //***** напнайю ****
+                            //***** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ****
                         }
 
                     };
@@ -64,9 +92,9 @@ class Browser extends Region {
                         public void handleEvent(org.w3c.dom.events.Event evt) {
                             System.out.println("play");
                             if(!state){
-                                //***** напнайю ****
+                                //***** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ****
                             }else {
-                                //******** нАПНАЙЮ ***
+                                //******** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ***
                             }
                         }
 
@@ -79,7 +107,7 @@ class Browser extends Region {
                         @Override
                         public void handleEvent(org.w3c.dom.events.Event evt) {
                             System.out.println("prev");
-                            //***** напнайю ****
+                            //***** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ****
                         }
 
                     };
@@ -92,7 +120,7 @@ class Browser extends Region {
                         @Override
                         public void handleEvent(org.w3c.dom.events.Event evt) {
                             System.out.println("next");
-                            //***** напнайю ****
+                            //***** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ****
                         }
 
                     };

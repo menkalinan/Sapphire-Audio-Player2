@@ -1,4 +1,4 @@
-package com.sdx2.SapphireAudioPlayer.audio.io;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.io;
 
 import javax.sound.sampled.*;
 

@@ -1,4 +1,4 @@
-package com.sdx2.SapphireAudioPlayer.audio.data;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.data;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class Playlist {
 
-    private ArrayList<Track> musicList;
+    private ArrayList<Track> trackList;
 
     public Playlist(String response){
-        musicList = new ArrayList<Track>();
+        trackList = new ArrayList<Track>();
         parseJSON(response);
     }
 
@@ -45,13 +45,13 @@ public class Playlist {
 //        }
     }
 
-    public void addTrackToPlayList(Track track){
-        this.musicList.add(track);
-    }
-
-    public ArrayList<Track> getMusicList(){
-        return this.musicList;
-    }
+//    public void addTrackToPlayList(Track track){
+//        this.musicList.add(track);
+//    }
+//
+//    public ArrayList<Track> getMusicList(){
+//        return this.musicList;
+//    }
 
     public void savePlaylist() throws JSONException {
 //        JSONArray jsonArray = new JSONArray();
@@ -87,4 +87,28 @@ public class Playlist {
         }
         parseJSON(result);
     }
+
+    public Track next(Track track) {
+//        index = index < playlist.size() - 1 ? index + 1 : -1;
+
+        return null;
+    }
+
+    public Track prev(Track track) {
+        return null;
+    }
+
+//    private Track next(int index) {
+//        index = index < playlist.size() - 1 ? index + 1 : -1;
+//        if (index != -1) {
+//            Track track = playlist.get(index);
+//            // technically, separator can not be the last track
+//            // so we just get the next track
+//            if (track.getTrackData().getLocation() == null)
+//                return next(index);
+//            return track;
+//        } else {
+//            return null;
+//        }
+//    }
 }

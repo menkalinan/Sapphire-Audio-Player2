@@ -1,7 +1,7 @@
-package com.sdx2.SapphireAudioPlayer.audio.mp3;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.mp3;
 
-import com.sdx2.SapphireAudioPlayer.audio.data.Track;
-import com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
+import main.java.com.sdx2.SapphireAudioPlayer.audio.data.Track;
+import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 import javazoom.jl.decoder.*;
 
 import javax.sound.sampled.AudioFormat;

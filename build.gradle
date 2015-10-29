@@ -1,0 +1,53 @@
+apply plugin: "java"
+apply plugin: 'application'
+
+mainClassName = 'main.java.com.sdx2.SapphireAudioPlayer.SapphireMain'
+
+jar {
+    baseName = 'test-gradle'
+    version =  '0.1.0'
+}
+
+repositories {
+   flatDir {
+       dirs 'lib'
+   }
+}
+
+
+dependencies {
+   compile name: 'jaudiotagger-2.2.5'
+   compile name: 'java-json-schema'
+   compile name: 'jl1.0.1'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
+
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+task writeVersionProperties {
+    File f = new File('src/main/java/version.properties');
+    if (f.exists()) { f.delete(); }
+
+    f = new File('src/main/java/version.properties');
+    FileOutputStream os = new FileOutputStream(f);
+    os.write((getVersionName()).getBytes());
+    os.flush();
+    os.close();
+}
+
+build.doFirst {
+    writeVersionProperties
+}
+
+
+

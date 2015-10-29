@@ -1,6 +1,7 @@
-package com.sdx2.SapphireAudioPlayer.audio.mp3;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.mp3;
 
-import com.sdx2.SapphireAudioPlayer.audio.data.Track;
+import main.java.com.sdx2.SapphireAudioPlayer.audio.Player;
+import main.java.com.sdx2.SapphireAudioPlayer.audio.data.Track;
 import org.jaudiotagger.audio.mp3.MP3AudioHeader;
 import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.*;
@@ -12,6 +13,8 @@ import org.jaudiotagger.tag.id3.framebody.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 public class MP3FileReader {
 
@@ -138,6 +141,13 @@ public class MP3FileReader {
         byte [] buf = new byte[65536];
         mp3Decoder.seekSample(100000);
         mp3Decoder.decode(buf);
+        Player player = new Player();
+        player.open(track);
+        try {
+            sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

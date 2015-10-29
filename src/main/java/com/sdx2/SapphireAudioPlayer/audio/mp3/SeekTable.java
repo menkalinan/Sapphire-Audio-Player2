@@ -1,4 +1,4 @@
-package com.sdx2.SapphireAudioPlayer.audio.mp3;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.mp3;
 
 import java.util.TreeSet;
 

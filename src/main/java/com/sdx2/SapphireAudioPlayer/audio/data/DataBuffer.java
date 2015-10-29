@@ -1,4 +1,4 @@
-package com.sdx2.SapphireAudioPlayer.audio.data;
+package main.java.com.sdx2.SapphireAudioPlayer.audio.data;
 
 public class DataBuffer {
     protected static final int DEFAULT_BUFFER_SIZE = 2048;
@@ -119,6 +119,7 @@ public class DataBuffer {
     }
 
     public void setEOF(boolean eof) {
+
         this.eof = eof;
     }
 
@@ -130,4 +131,9 @@ public class DataBuffer {
         }
     }
 
+    public void show() {
+        for (int i = 0; i < buffer.length; i++) {
+            System.out.println(buffer[i]);
+        }
+    }
 }
