@@ -15,21 +15,24 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 
 
 public class SapphireMain extends Application {
     private Scene scene;
     @Override public void start(Stage stage) {
                 String version = "Web View ";
-//        try {
-//            version += readFile("src/main/java/version.properties");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            version += readFile("src/main/java/version.properties");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         stage.setTitle(version);
         scene = new Scene(new Browser(),750,500, Color.web("#666970"));
         stage.setScene(scene);
@@ -66,8 +69,14 @@ class Browser extends Region {
     public Browser() {
         boolean state = false;
         getStyleClass().add("browser");
-        String path = getClass().getResource("/main/resources/com/sdx2/SapphireAudioPlayer/view/index.html").toExternalForm();
-        webEngine.load(path);
+        URL url = null;
+        try {
+            url = new File(System.getProperty("user.dir")+"/data/index.html").toURI().toURL();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        webEngine.load(url.toString());
         getChildren().add(browser);
 
         webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
