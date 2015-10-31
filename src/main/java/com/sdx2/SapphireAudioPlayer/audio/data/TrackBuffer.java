@@ -67,14 +67,14 @@ public class TrackBuffer {
     }
 
     public int read(byte[] b, int off, int len) {
-//        if (bytesLeft > 0) {
-//            if (bytesLeft < len) {
-//                len = bytesLeft;
-//            }
-//            bytesLeft -= len;
-//        } else if (bytesLeft == 0) {
-//            return -1;
-//        }
+        if (bytesLeft > 0) {
+            if (bytesLeft < len) {
+                len = bytesLeft;
+            }
+            bytesLeft -= len;
+        } else if (bytesLeft == 0) {
+            return -1;
+        }
         return buffer.get(b, off, len);
     }
 

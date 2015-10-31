@@ -2,6 +2,7 @@ package main.java.com.sdx2.SapphireAudioPlayer.audio.mp3;
 
 import main.java.com.sdx2.SapphireAudioPlayer.audio.Player;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.data.Track;
+import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 import org.jaudiotagger.audio.mp3.MP3AudioHeader;
 import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.*;
@@ -54,10 +55,6 @@ public class MP3FileReader {
         }
 
         return track;
-    }
-
-    public boolean isFileSupported(String ext) {
-        return ext.equalsIgnoreCase("mp3");
     }
 
     protected void copyTagFields(Tag tag, Track track) throws IOException {
@@ -144,10 +141,10 @@ public class MP3FileReader {
         Player player = new Player();
         player.open(track);
         try {
-            sleep(100000);
+            player.seek(AudioUtil.millisToSamples(10, track.getSampleRate()));
+            sleep(10000000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
 }
