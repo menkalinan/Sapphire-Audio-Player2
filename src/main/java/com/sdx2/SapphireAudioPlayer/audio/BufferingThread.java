@@ -85,8 +85,10 @@ public class BufferingThread extends PlayerActor implements Runnable {
                         if (len == -1) {
                             nextTrack = null;
                             if (playList != null)
+                                nextTrack = playList.next();
+                            if (nextTrack == null) {
                                 stop(false);
-
+                            }
                             continue;
                         }
 
@@ -135,10 +137,12 @@ public class BufferingThread extends PlayerActor implements Runnable {
 
         if (track != null) {
             if (track.isFile() && !track.getFile().exists()) {
-
-                stop(false);
-                return;
-
+                track = playList.next();
+                if (track == null || (
+                        track.isFile() && !track.getFile().exists())) {
+                    stop(false);
+                    return;
+                }
             }
             decoder = new MP3Decoder();
             decoder.open(track);

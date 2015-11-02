@@ -32,7 +32,11 @@ public class Player {
     public void play() {
         if (!isPaused()) {
             Track track = getTrack();
-            bufferingThread.send(PlayerActor.Message.OPEN, track);
+            if (track == null) {
+                next();
+            } else {
+                bufferingThread.send(PlayerActor.Message.OPEN, track);
+            }
         }
     }
 
@@ -46,6 +50,24 @@ public class Player {
 
     public void stop() {
         bufferingThread.send(PlayerActor.Message.STOP);
+    }
+
+    public void next() {
+        Track track = bufferingThread.getPlayList().next();
+        if (track != null) {
+            open(track);
+        } else {
+            stop();
+        }
+    }
+
+    public void prev() {
+        Track track = bufferingThread.getPlayList().prev();
+        if (track != null) {
+            open(track);
+        } else {
+            stop();
+        }
     }
 
     public Track getTrack() {

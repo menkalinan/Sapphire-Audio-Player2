@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Playlist {
 
     private ArrayList<Track> trackList;
+    private int current;
 
     public Playlist(String response){
         trackList = new ArrayList<Track>();
@@ -88,27 +89,40 @@ public class Playlist {
         parseJSON(result);
     }
 
-    public Track next(Track track) {
-//        index = index < playlist.size() - 1 ? index + 1 : -1;
-
-        return null;
+    public Track next() {
+        current++;
+        if (current < trackList.size() - 1) {
+            Track track = trackList.get(current);
+            if (track.getLocation() == null)
+                return next();
+            return track;
+        } else {
+            return null;
+        }
     }
 
-    public Track prev(Track track) {
-        return null;
+    public Track prev() {
+        current--;
+        if (current >= 0) {
+            Track track = trackList.get(current);
+            if (track.getLocation() == null)
+                return prev();
+            return track;
+        } else {
+            return null;
+        }
     }
 
-//    private Track next(int index) {
-//        index = index < playlist.size() - 1 ? index + 1 : -1;
-//        if (index != -1) {
-//            Track track = playlist.get(index);
-//            // technically, separator can not be the last track
-//            // so we just get the next track
-//            if (track.getTrackData().getLocation() == null)
-//                return next(index);
-//            return track;
-//        } else {
-//            return null;
-//        }
-//    }
+    private Track set(int index) {
+        if (index < trackList.size() - 1 && index >=0) {
+            Track track = trackList.get(index);
+            if (track.getLocation() == null)
+                return trackList.get(index + 1);
+            current = index;
+            return track;
+        } else {
+            return null;
+        }
+    }
+
 }
