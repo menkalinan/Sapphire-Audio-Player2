@@ -21,18 +21,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
-
+import java.net.URL;import main.java.com.sdx2.SapphireAudioPlayer.Version;
 
 public class SapphireMain extends Application {
     private Scene scene;
     @Override public void start(Stage stage) {
-                String version = "Web View ";
-        try {
-            version += readFile("src/main/java/version.properties");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String v = Version.v;
+        String version = "Web View "+ v;
         stage.setTitle(version);
         scene = new Scene(new Browser(),750,500, Color.web("#666970"));
         stage.setScene(scene);
