@@ -40,7 +40,7 @@ task writeVersionClass {
 
     f = new File('src/main/java/com/sdx2/SapphireAudioPlayer/Version.java');
     FileOutputStream os = new FileOutputStream(f);
-    os.write(("package main.java.com.sdx2.SapphireAudioPlayer; \n\n public class Version{\n    public static String v = \""+(getVersionName())+"\";\n}").getBytes());
+    os.write(("package main.java.com.sdx2.SapphireAudioPlayer; \n\n public class Version{\n    public static final String v = \""+(getVersionName())+"\";\n}").getBytes());
     os.flush();
     os.close();
 }
