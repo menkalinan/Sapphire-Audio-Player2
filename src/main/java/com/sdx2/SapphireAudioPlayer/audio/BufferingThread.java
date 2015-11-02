@@ -9,7 +9,7 @@ import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 
 import java.nio.Buffer;
 
-public class BufferingThread extends PlayActor implements Runnable {
+public class BufferingThread extends PlayerActor implements Runnable {
 
     private Playlist playList;
 
@@ -85,7 +85,7 @@ public class BufferingThread extends PlayActor implements Runnable {
                         if (len == -1) {
                             nextTrack = null;
                             if (playList != null)
-                                //nextTrack = playList.next(currentTrack);
+                                nextTrack = playList.next();
                             if (nextTrack == null) {
                                 stop(false);
                             }
@@ -137,8 +137,7 @@ public class BufferingThread extends PlayActor implements Runnable {
 
         if (track != null) {
             if (track.isFile() && !track.getFile().exists()) {
-                //try to get the next one
-                //track = playList.next(track);
+                track = playList.next();
                 if (track == null || (
                         track.isFile() && !track.getFile().exists())) {
                     stop(false);
@@ -146,7 +145,7 @@ public class BufferingThread extends PlayActor implements Runnable {
                 }
             }
             decoder = new MP3Decoder();
-            //decoder.open(track);
+            decoder.open(track);
             currentTrack = track;
             currentByte = 0;
 
@@ -192,9 +191,5 @@ public class BufferingThread extends PlayActor implements Runnable {
 
     public boolean isActive() {
         return active;
-    }
-
-    public void setStopAfterCurrent(boolean stopAfterCurrent) {
-        this.stopAfterCurrent = stopAfterCurrent;
     }
 }
