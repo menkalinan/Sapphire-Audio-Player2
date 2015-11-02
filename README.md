@@ -9,7 +9,7 @@ $ git clone https://github.com/menkalinan/Sapphire-Audio-Player
 
 If you use unix system you should modify file permissions in order to be able to execute file:
 
-chmod a+x gradlew
+> chmod a+x gradlew
 
  <b> Run the full build using the following command at a command prompt: </b> 
 
