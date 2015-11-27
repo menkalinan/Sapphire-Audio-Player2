@@ -6,9 +6,8 @@ import main.java.com.sdx2.SapphireAudioPlayer.audio.io.AudioOutput;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 
 import javax.sound.sampled.AudioFormat;
-import java.util.logging.Level;
 
-public class PlayThread extends PlayActor implements Runnable {
+public class PlayThread extends PlayerActor implements Runnable {
     private static final int BUFFER_SIZE = AudioOutput.BUFFER_SIZE;
 
     private AudioFormat format;

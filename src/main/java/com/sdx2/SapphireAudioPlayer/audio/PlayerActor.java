@@ -4,7 +4,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Level;
 
-public abstract class PlayActor {
+public abstract class PlayerActor {
     public enum Message {
         PLAY, PAUSE, STOP, FLUSH, OPEN, SEEK;
 
@@ -24,7 +24,7 @@ public abstract class PlayActor {
         queue.add(message);
     }
 
-    protected PlayActor() {
+    protected PlayerActor() {
         Thread messageThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -41,7 +41,7 @@ public abstract class PlayActor {
                     }
                 }
             }
-        }, "PlayActor Thread");
+        }, "PlayerActor Thread");
         messageThread.start();
     }
 
