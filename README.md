@@ -11,6 +11,20 @@ If you use unix system you should modify file permissions in order to be able to
 
 > chmod a+x gradlew
 
+ <b> Run Unit Tests: </b> 
+
+for unix:
+> ./gradle test 
+
+<i>or with the gradle wrapper:</i>
+> ./gradlew test
+
+for windows:
+> gradle test 
+
+<i>or with the gradle wrapper:</i>
+> ./gradlew test
+
  <b> Run the full build using the following command at a command prompt: </b> 
 
 for unix:
