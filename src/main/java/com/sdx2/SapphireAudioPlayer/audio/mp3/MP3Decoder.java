@@ -155,9 +155,9 @@ public class MP3Decoder {
         return audioFormat;
     }
 
-    public void seekSample(long targetSample) {
+    public boolean seekSample(long targetSample) {
         currentSample = targetSample;
-        createBitstream(targetSample);
+        return createBitstream(targetSample);
     }
 
     public int decode(byte[] buf) {
