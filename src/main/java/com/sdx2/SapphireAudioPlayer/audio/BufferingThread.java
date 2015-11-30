@@ -8,7 +8,6 @@ import main.java.com.sdx2.SapphireAudioPlayer.audio.mp3.MP3Decoder;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 
 import javax.sound.sampled.AudioFormat;
-import java.nio.Buffer;
 
 public class BufferingThread extends PlayerActor implements Runnable {
 
@@ -131,7 +130,7 @@ public class BufferingThread extends PlayerActor implements Runnable {
         }
     }
 
-    public synchronized void open(Track track, AudioFormat format, boolean forced){
+    public synchronized void open(Track track, AudioFormat format, boolean forced) {
         if (decoder != null) {
             decoder.close();
         }
@@ -213,6 +212,7 @@ public class BufferingThread extends PlayerActor implements Runnable {
             decoder.seekSample(currentTrack.getStartPosition() + sample);
             currentByte = AudioUtil.samplesToBytes(sample, decoder.getAudioFormat().getFrameSize());
             buffer.addTrack(currentTrack, decoder.getAudioFormat(), sample, true);
+            buffer.addTrack(currentTrack, decoder.getAudioFormat(), false, -1);
             if (oldState) {
                 start();
             }
@@ -229,5 +229,20 @@ public class BufferingThread extends PlayerActor implements Runnable {
 
     public boolean isActive() {
         return active;
+    }
+
+
+    public void seek(Track track, AudioFormat format, MP3Decoder decoder, int sample) {
+        boolean oldState = active;
+        pause(true);
+
+        if (decoder != null) {
+            decoder.seekSample(track.getStartPosition() + sample);
+            currentByte = AudioUtil.samplesToBytes(sample, decoder.getAudioFormat().getFrameSize());
+            buffer.addTrack(track, format, true, sample);
+            if (oldState) {
+                start();
+            }
+        }
     }
 }
