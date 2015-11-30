@@ -19,6 +19,8 @@ dependencies {
    compile name: 'jaudiotagger-2.2.5'
    compile name: 'java-json-schema'
    compile name: 'jl1.0.1'
+   testCompile name: 'assertj-core-3.2.0'
+   testCompile name: 'mockito-all-1.10.19'
 }
 
 task wrapper(type: Wrapper) {
