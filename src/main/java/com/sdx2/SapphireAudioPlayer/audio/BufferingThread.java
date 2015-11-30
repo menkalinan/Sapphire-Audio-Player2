@@ -7,6 +7,7 @@ import main.java.com.sdx2.SapphireAudioPlayer.audio.data.TrackBuffer;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.mp3.MP3Decoder;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.util.AudioUtil;
 
+import javax.sound.sampled.AudioFormat;
 import java.nio.Buffer;
 
 public class BufferingThread extends PlayerActor implements Runnable {
@@ -130,6 +131,43 @@ public class BufferingThread extends PlayerActor implements Runnable {
         }
     }
 
+    public synchronized void open(Track track, AudioFormat format, boolean forced){
+        if (decoder != null) {
+            decoder.close();
+        }
+
+        if (track != null) {
+            if (track.isFile() && !track.getFile().exists()) {
+                track = playList.next();
+                if (track == null || (
+                        track.isFile() && !track.getFile().exists())) {
+                    stop(false);
+                    return;
+                }
+            }
+            decoder = new MP3Decoder();
+            decoder.open(track);
+            currentTrack = track;
+            currentByte = 0;
+
+            if (decoder == null || !decoder.open(track)) {
+                currentTrack = null;
+                stop(false);
+                return;
+            }
+
+            buffer.addTrack(track, format, false, -1);
+            buffer.check("dd");
+            if (track.getStartPosition() > 0)
+                decoder.seekSample(track.getStartPosition());
+
+            start();
+            if (forced)
+                playingThread.send(Message.FLUSH);
+            playingThread.send(Message.PLAY);
+        }
+    }
+
     public synchronized void open(Track track, boolean forced) {
         if (decoder != null) {
             decoder.close();
@@ -155,8 +193,8 @@ public class BufferingThread extends PlayerActor implements Runnable {
                 return;
             }
 
-            buffer.addTrack(currentTrack, decoder.getAudioFormat(), -1, forced);
-
+            buffer.addTrack(track, decoder.getAudioFormat(), -1, forced);
+            buffer.check("dd");
             if (track.getStartPosition() > 0)
                 decoder.seekSample(track.getStartPosition());
 

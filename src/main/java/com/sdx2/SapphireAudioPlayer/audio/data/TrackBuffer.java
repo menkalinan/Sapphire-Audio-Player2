@@ -12,20 +12,6 @@ public class TrackBuffer {
     private Queue<Integer> when = new LinkedList<Integer>();
     private int bytesLeft = 0;
 
-    public class BufferEntry {
-        public Track track;
-        public AudioFormat format;
-        public long startSample;
-        public boolean forced;
-
-        BufferEntry(Track track, AudioFormat format, long startSample, boolean forced) {
-            this.track = track;
-            this.format = format;
-            this.startSample = startSample;
-            this.forced = forced;
-        }
-    }
-
     public TrackBuffer(int size) {
 
         buffer = new DataBuffer(size);
@@ -88,5 +74,13 @@ public class TrackBuffer {
 
     public void flush() {
         buffer.empty();
+    }
+
+    public void check(String dd) {
+        String f = dd;
+    }
+
+    public void addTrack(Track track, AudioFormat format, boolean b, int i) {
+
     }
 }

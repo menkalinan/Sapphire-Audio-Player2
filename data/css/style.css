@@ -2,6 +2,12 @@
     font-family: iris;
     src: url(../fonts/iris.ttf);
 }
+body{
+	background:url(../img/bg.png);
+	background-size:contain;
+	background-position: 50% 50%;
+	height:1085px;
+}
 .clear{
     width: 100%;
     display: -webkit-box;

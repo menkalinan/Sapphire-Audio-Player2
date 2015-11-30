@@ -1,5 +1,6 @@
 package main.java.com.sdx2.SapphireAudioPlayer.audio;
 
+import main.java.com.sdx2.SapphireAudioPlayer.audio.data.BufferEntry;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.data.Track;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.data.TrackBuffer;
 import main.java.com.sdx2.SapphireAudioPlayer.audio.io.AudioOutput;
@@ -102,9 +103,9 @@ public class PlayThread extends PlayerActor implements Runnable {
         }
     }
 
-    private boolean openNext() {
+    public boolean openNext() {
         try {
-            TrackBuffer.BufferEntry nextEntry = buffer.pollTrack();
+            BufferEntry nextEntry = buffer.pollTrack();
             if (nextEntry.track == null) {
                 return false;
             }
